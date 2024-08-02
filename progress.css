@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.value {
+    gap: 110px;
+}
+
+.value-var {
+    padding-left: 6px;
+    border: #000 1px solid;
+}
+
+.container {
+    width: 320px;
+    height: 568px;
+    padding: 0 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.container .bar {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.container .progress {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg); /* Rotate the SVG to start the stroke from the top */
+}
+
+.container .circle-bg {
+    fill: none;
+    stroke-width: 3.8;
+}
+
+.container .circle {
+    fill: none;
+    stroke-linecap: butt; /* Ensure no rounded ends */
+    stroke-dasharray: 0, 100; /* Initial value */
+    transition: stroke-dasharray 0.35s;
+}
+
+.var {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    width: 150px;
+}
+
+.value,
+.animate,
+.hide {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.value-var {
+    width: 40px;
+    height: 25px;
+    border-radius: 15px;
+}
+
+.button {
+    background-color: #d2d2d2;
+    width: 40px;
+    height: 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+}
+
+.button::before {
+    position: absolute;
+    content: '';
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 2.5px;
+    transition: 0.2s;
+}
+
+#animated,
+#hided {
+    display: none;
+}
+
+#animated:checked + .button,
+#hided:checked + .button {
+    background-color: #005cff;
+}
+
+#animated:checked + .button::before,
+#hided:checked + .button::before {
+    transform: translateX(15px);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.bar.rotate {
+    animation: rotate 10s linear infinite;
+}
+
+@media (orientation: landscape) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 568px;
+        height: 320px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .bar {
+        margin-right: 20px;
+    }
+
+    .var {
+        padding-top: 0;
+        padding-left: 50px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .value,
+    .animate,
+    .hide {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+}

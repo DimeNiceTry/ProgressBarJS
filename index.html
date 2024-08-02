@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./progress.css">
+    <script defer src="./Progress.js"></script>
+</head>
+<body>
+    <div class="container">
+        <p style="position: absolute; top: 5px; left: 0;">Progress</p>
+        <div class="bar">
+            <svg class="progress" viewBox="0 0 36 36">
+                <circle class="circle-bg"
+                    cx="18" cy="18" r="15.9155"
+                    stroke="#e6e6e6" stroke-width="3.8" fill="none"
+                />
+                <circle class="circle"
+                    cx="18" cy="18" r="15.9155"
+                    stroke="var(--clr, #005cff)" stroke-width="3.8" fill="none"
+                />
+            </svg>
+        </div>
+        <div class="var">
+            <div class="value">
+                <input type="text" class="value-var" maxlength="3">
+                <p>Value</p>
+            </div>
+            <div class="animate">
+                <div class="toggle">
+                    <input type="checkbox" id="animated">
+                    <label for="animated" class="button"></label>
+                </div>
+                <p>Animate</p>
+            </div>
+            <div class="hide">
+                <div class="toggle">
+                    <input type="checkbox" id="hided">
+                    <label for="hided" class="button"></label>
+                </div>
+                <p>Hide</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

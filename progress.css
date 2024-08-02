@@ -133,7 +133,7 @@ body {
 .value p,
 .animate p,
 .hide p {
-    margin-left: 20px; /* Adjust this value to set the distance between the button and text */
+    margin-left: 20px;
 }
 
 @media (orientation: landscape) {
@@ -152,12 +152,13 @@ body {
     }
 
     .bar {
-        margin-right: 20px;
+        margin-left: 20px;
     }
     .container .bar{
         margin-bottom: 0;
     }
     .var {
+        height: 150px;
         padding-top: 0;
         flex-direction: column;
         justify-content: center;

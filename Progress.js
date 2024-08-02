@@ -7,10 +7,10 @@ const progressBar = document.querySelector('.bar');
 valueVarInput.addEventListener('input', (event) => {
     const value = event.target.value;
 
-    if (value > 100) {
-        alert('Нельзя вставлять значения больше 100');
+    if (value > 100  || value < 0) {
+        alert('Некорректное значение');
         event.target.value = '';
-        circle.style.strokeDasharray = `0, 100`; // сбросить значение прогресса
+        circle.style.strokeDasharray = `0, 100`; 
     } else {
         circle.style.strokeDasharray = `${value} ${100 - value}`;
     }

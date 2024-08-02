@@ -1,37 +1,71 @@
-const valueVarInput = document.querySelector('.value-var');
-const circle = document.querySelector('.circle');
-const hideToggleButton = document.querySelector('#hided');
-const animateToggleButton = document.querySelector('#animated');
-const progressBar = document.querySelector('.bar');
+class ProgressBar {
+    constructor() {
+        this.valueVarInput = document.querySelector('.value-var');
+        this.circle = document.querySelector('.circle');
+        this.hideToggleButton = document.querySelector('#hided');
+        this.animateToggleButton = document.querySelector('#animated');
+        this.progressBar = document.querySelector('.bar');
 
-valueVarInput.addEventListener('input', (event) => {
-    const value = event.target.value;
+        this.initEventListeners();
+    }
 
-    if (value > 100  || value < 0 || isNaN(value) ) {
-        alert('Некорректное значение!');
-        event.target.value = '';
-        circle.style.strokeDasharray = `0, 100`; 
-    } 
-    if (value == ''){
-        circle.style.strokeDasharray = `0, 100`; 
-    }
-    else {
-        circle.style.strokeDasharray = `${value} ${100 - value}`;
-    }
-});
+    initEventListeners() {
+        this.valueVarInput.addEventListener('input', (event) => {
+            this.setValue(event.target.value);
+        });
 
-hideToggleButton.addEventListener('change', () => {
-    if (hideToggleButton.checked) {
-        progressBar.style.visibility = 'hidden';
-    } else {
-        progressBar.style.visibility = 'visible';
-    }
-});
+        this.hideToggleButton.addEventListener('change', () => {
+            this.setVisibility(this.hideToggleButton.checked);
+        });
 
-animateToggleButton.addEventListener('change', () => {
-    if (animateToggleButton.checked) {
-        progressBar.classList.add('rotate');
-    } else {
-        progressBar.classList.remove('rotate');
+        this.animateToggleButton.addEventListener('change', () => {
+            this.setAnimation(this.animateToggleButton.checked);
+        });
     }
-});
+
+    setValue(value) {
+        if (value > 100 || value < 0 || isNaN(value)) {
+            alert('Некорректное значение!');
+            this.valueVarInput.value = '';
+            this.circle.style.strokeDasharray = `0, 100`;
+        } else if (value === '') {
+            this.circle.style.strokeDasharray = `0, 100`;
+        } else {
+            this.circle.style.strokeDasharray = `${value} ${100 - value}`;
+        }
+    }
+
+    setVisibility(isVisible) {
+        this.progressBar.style.visibility = isVisible ? 'hidden' : 'visible';
+    }
+
+    setAnimation(isAnimated) {
+        if (isAnimated) {
+            this.progressBar.classList.add('rotate');
+        } else {
+            this.progressBar.classList.remove('rotate');
+        }
+    }
+
+    updateValue(value) {
+        this.setValue(value);
+    }
+
+    toggleVisibility() {
+        this.setVisibility(this.hideToggleButton.checked);
+    }
+
+    toggleAnimation() {
+        this.setAnimation(this.animateToggleButton.checked);
+    }
+}
+
+const progressBar = new ProgressBar();
+
+function usage() {
+    progressBar.updateValue(0); 
+    progressBar.toggleVisibility(); 
+    progressBar.toggleAnimation();
+}
+
+usage();
